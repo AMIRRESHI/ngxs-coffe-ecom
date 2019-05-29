@@ -76,7 +76,7 @@ export class AppState {
           tap(coffeeList => {
               const state = ctx.getState();
 
-              console.log("getCoffeeList action call: ", state)
+              console.log("getCoffeeList action call: ", state, coffeeList)
 
               ctx.setState({
                   ...state,
@@ -85,8 +85,19 @@ export class AppState {
           }),
           catchError(() => ctx.dispatch(new GetCoffeeListFailed()))
       )
-
   }
+
+
+  //other way around using getState, setState
+//   getCoffeeList$({getState, setState}: StateContext<App>) {
+//     return this.coffeeSvc.getAll().pipe(tap((coffeeList) => {
+//         const state = getState();
+//         setState({
+//             ...state,
+//              coffeeList
+//         });
+//     }));
+// }
 
   // @Action(GetCoffeeList)
   // getCoffeeList$(ctx: StateContext<App>, action: GetCoffeeList) {
